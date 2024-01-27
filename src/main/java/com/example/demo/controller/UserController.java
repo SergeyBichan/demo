@@ -20,7 +20,7 @@ public class UserController {
     }
 
     @GetMapping("users/{id}")
-    public ResponseEntity<UserDto> getUserbyId(@PathVariable Long id) {
+    public ResponseEntity<UserDto> getUserById(@PathVariable Long id) {
         return ResponseEntity.ok(userService.getUserById(id));
     }
 
@@ -41,7 +41,7 @@ public class UserController {
     }
 
     @PutMapping("/users/{userId}/departments/{departmentId}")
-    public ResponseEntity<UserDto> addUserToDepartment(
+    public ResponseEntity<Map<String, String>> addUserToDepartment(
             @PathVariable Long userId, @PathVariable Long departmentId){
         return ResponseEntity.ok(userService.addUserToDepartment(userId, departmentId));
     }

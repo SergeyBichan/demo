@@ -76,20 +76,17 @@ public class UserService {
         return convertedToDto(user);
     }
 
-    public UserDto addUserToDepartment(Long userId, Long departmentId) {
-        Set<Department> departments;
+    public Map<String, String> addUserToDepartment(Long userId, Long departmentId) {
+        Set<Department> departmentSet;
         User user = userRepo.findById(userId).get();
         Department department = departmentRepo.findById(departmentId).get();
-        departments = user.getDepartments();
-        departments.add(department);
-        user.setDepartments(departments);
+        departmentSet = user.getDepartments();
+        departmentSet.add(department);
+        user.setDepartments(departmentSet);
         userRepo.save(user);
-        return convertedToDto(user);
+        return Map.of("message", user.toString());
 }
 
-public List<UserDto> getUserByIdWithDepartment(Long id) {
-    return null;
-}
 
 private List<UserDto> convertedToDto(List<User> employees) {
     return employees
